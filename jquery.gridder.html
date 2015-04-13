@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>gridster.js Test Suite</title>
+  <!-- Load local jQuery, removing access to $ (use jQuery, not $). -->
+  
+  <link rel="stylesheet" type="text/css" href="jquery.gridster.min.css">
+<link rel="stylesheet" type="text/css" href="style.css">
+<style type="text/css">
+  .gridster{
+    width: auto;
+    margin: 0
+  }
+</style>
+
+  <!-- Load local lib and tests. -->
+  <script type="text/javascript">
+  </script>
+</head>
+<body>
+  <div class="gridster">
+      <ul>
+        <li data-row="1" data-col="1" data-sizex="6" data-sizey="2" class="gs-w">
+          Hello 1
+          <span class="gs-resize-handle gs-resize-handle-both"></span>
+        </li>
+        
+        <li data-row="1" data-col="7" data-sizex="6" data-sizey="2" class="gs-w">
+          Hello 2
+          <span class="gs-resize-handle gs-resize-handle-both"></span>
+        </li>
+        <li data-row="2" data-col="1" data-sizex="6" data-sizey="2" class="gs-w">
+          Hello 3
+          <span class="gs-resize-handle gs-resize-handle-both"></span>
+        </li>
+        <li data-row="2" data-col="7" data-sizex="6" data-sizey="2" class="gs-w">
+          Hello 4
+          <span class="gs-resize-handle gs-resize-handle-both"></span>
+        </li>
+        <li data-row="3" data-col="1" data-sizex="6" data-sizey="2" class="gs-w">
+          Hello 5
+          <span class="gs-resize-handle gs-resize-handle-both"></span>
+        </li>
+        <li data-row="3" data-col="7" data-sizex="6" data-sizey="2" class="gs-w">
+          Hello 6
+          <span class="gs-resize-handle gs-resize-handle-both"></span>
+        </li>
+
+      </ul>
+    </div>
+  <script src="jquery.js"></script>
+  <script src="jquery.gridster.js"></script>
+  
+  <script type="text/javascript">
+  $(document).ready(function() {
+    
+  var gridster;
+
+  $(function(){
+
+    var win_width = $(window).width();
+    var widget_width = win_width/12 - 20;
+    gridster = $(".gridster > ul").gridster({
+        widget_margins: [5, 5],
+        widget_base_dimensions: [widget_width,widget_width],
+        min_cols: 12,
+        resize: {
+            enabled: true
+        }
+    }).data('gridster');
+
+
+  });
+
+  $(window).resize(function(){
+      gridsterResize();
+  });
+
+  function gridsterResize(){
+     var win_width = $(window).width();
+    var widget_width = win_width/12 - 20;
+    var gridster = $(".gridster ul").gridster().data('gridster');
+
+      gridster.resize_widget_dimensions({
+        widget_base_dimensions: [widget_width, widget_width],
+      });
+    }
+
+  })
+  
+  </script>
+
+</body>
+</html>
